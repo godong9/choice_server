@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    mongooseUtil = require('./util/mongooseUtil'),
     async = require('async');
 
 /**
@@ -36,6 +37,7 @@ var ChoiceSchema = new Schema({
 
 }, {collection: 'choices'});
 
+mongooseUtil.setStringId(ChoiceSchema);
 
 /**
  * Model Methods

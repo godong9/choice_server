@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
+    mongooseUtil = require('./util/mongooseUtil'),
     async = require('async');
 
 /**
@@ -13,13 +14,27 @@ var UserSchema = new Schema({
     createTime: { type: Date, required: true } //생성 시간
 }, {collection: 'users'});
 
+mongooseUtil.setStringId(UserSchema);
 
 /**
  * Model Methods
  */
 
 UserSchema.statics.getUser = function (criteria, projection, options, callback) {
+    criteria = criteria || {};
+    projection = projection || {};
+    options = options || {};
+    this.find(criteria, projection, options, function(err, docs) {
+        console.log(docs);
+        callback(err, docs);
+        return;
+    });
+};
+
+UserSchema.statics.saveUser = function (doc, callback) {
 
 };
+
+
 
 module.exports = mongoose.model('User', UserSchema);

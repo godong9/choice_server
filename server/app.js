@@ -5,13 +5,29 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var MongoStore;
+var fs = require('fs');
+var mongoose = require('mongoose');
+var MongoStore = null;
 
+var app = express();
+
+// Model Files
+var modelsPath = path.join(__dirname, './models');
+fs.readdirSync(modelsPath).forEach(function (file) {
+    if (/(.*)\.(js$|coffee$)/.test(file)) {
+        require(modelsPath + '/' + file);
+    }
+});
+
+// Route Files
 var routes = require('./routes/index');
 var users = require('./routes/users');
 //var choices = require('./routes/choices');
 
-var app = express();
+// Database Setup
+var dbUri = 'mongodb://localhost:27017/choicedb';
+var dbOptions = { username: '', password: '' };
+mongoose.connect(dbUri, dbOptions);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -30,7 +46,7 @@ if (app.get('env') === 'production') {
     MongoStore = require('connect-mongo')(session);
     app.use(session({
         secret: 'choice-session',
-        store: new MongoStore({ url: 'mongodb://localhost:27017/choice' }),
+        store: new MongoStore({ url: dbUri }),
         resave: false,
         saveUninitialized: true
     }));
@@ -42,7 +58,6 @@ if (app.get('env') === 'production') {
     }));
 }
 
-
 app.use('/', routes);
 app.use('/ajax/user', users);
 //app.use('/ajax/choice', choices);
@@ -53,6 +68,7 @@ app.use(function(req, res, next) {
     err.status = 404;
     next(err);
 });
+
 
 // error handlers
 
