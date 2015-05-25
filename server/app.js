@@ -60,8 +60,8 @@ app.use(expressValidator({
     }
 }));
 
+// Static Path Setting
 app.use(express.static(path.join(__dirname, 'public')));
-console.log(app.get('env'))
 
 // Session
 if (app.get('env') === 'production') {
