@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    mongooseUtil = require('./util/mongooseUtil'),
     async = require('async');
 
 /**
@@ -36,8 +35,6 @@ var ChoiceSchema = new Schema({
     isAlreadyVote: { type: Boolean } // 투표 여부 (true: 이미 투표, false: 투표 안함)
 
 }, {collection: 'choices'});
-
-mongooseUtil.setStringId(ChoiceSchema);
 
 /**
  * Model Methods

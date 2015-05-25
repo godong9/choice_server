@@ -6,15 +6,13 @@ var userCtrl = require('../controllers/User');
 
 
 /* GET all users */
-router.get('/', userCtrl.getUsers);
+router.get('/all', userCtrl.getAllUsers);
 
-
+/* GET save user */
+router.post('/save', userCtrl.saveUser);
 
 /* POST user login */
-router.post('/login', function(req, res) {
-    logger.debug("req.body", req.body);
-    res.send('respond with a resource');
-});
+router.post('/login', userCtrl.login);
 
 
 module.exports = router;

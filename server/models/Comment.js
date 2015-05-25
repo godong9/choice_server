@@ -1,6 +1,5 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    mongooseUtil = require('./util/mongooseUtil'),
     async = require('async');
 
 /**
@@ -23,9 +22,6 @@ var CommentSchema = new Schema({
     isAlreadyUnlike: { type: Boolean } // 비공감 여부
 
 }, {collection: 'comments'});
-
-mongooseUtil.setStringId(CommentSchema);
-
 
 /**
  * Model Methods
