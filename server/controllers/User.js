@@ -7,6 +7,13 @@ function UserCtrl() {
 }
 
 UserCtrl.getAllUsers = function (req, res) {
+    var errors;
+    req.checkQuery('test', 'Must be true').notEmpty().isIn(["true"]);
+    errors = req.validationErrors();
+    if (errors) {
+        res.status(400).send(errors);
+        return;
+    }
     User.getUser({}, {}, {}, function(err, docs) {
        res.send(docs);
     });
@@ -19,7 +26,7 @@ UserCtrl.saveUser = function (req, res) {
 };
 
 UserCtrl.login = function (req, res) {
-    // TODO: 로그인 코드 처리해야함!
+
 };
 
 module.exports = UserCtrl;

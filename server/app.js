@@ -5,11 +5,14 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var expressValidator = require('express-validator');
 var fs = require('fs');
 var mongoose = require('mongoose');
 var MongoStore = null;
 
 var app = express();
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
 
 // Model Files
 var modelsPath = path.join(__dirname, './models');
@@ -39,7 +42,26 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+// Express Validator Setting
+app.use(expressValidator({
+    errorFormatter: function(param, msg, value) {
+        var namespace = param.split('.')
+            , root    = namespace.shift()
+            , formParam = root;
+
+        while(namespace.length) {
+            formParam += '[' + namespace.shift() + ']';
+        }
+        return {
+            vals : [formParam],
+            key   : msg
+        };
+    }
+}));
+
 app.use(express.static(path.join(__dirname, 'public')));
+console.log(app.get('env'))
 
 // Session
 if (app.get('env') === 'production') {
