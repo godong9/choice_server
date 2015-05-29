@@ -4,11 +4,15 @@ var log4js = require('log4js');
 var logger = log4js.getLogger('routes/users');
 var userCtrl = require('../controllers/User');
 
-
 /**
  * GET All users
  */
 router.get('/all', userCtrl.getAllUsers);
+
+/**
+ * GET User by id
+ */
+router.get('/id/:id', userCtrl.getUser);
 
 /**
  * POST Save user

@@ -18,9 +18,32 @@ var UserSchema = new Schema({
  */
 
 UserSchema.statics.getUser = function (criteria, projection, options, callback) {
+    if (arguments.length === 2) {
+        callback = projection;
+    }
+    if (arguments.length === 3) {
+        callback = options;
+    }
     criteria = criteria || {};
-    projection = projection || {};
-    options = options || {};
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
+
+    this.findOne(criteria, projection, options, function(err, doc) {
+        callback(err, doc);
+    });
+};
+
+UserSchema.statics.getUsers = function (criteria, projection, options, callback) {
+    if (arguments.length === 2) {
+        callback = projection;
+    }
+    if (arguments.length === 3) {
+        callback = options;
+    }
+    criteria = criteria || {};
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
+
     this.find(criteria, projection, options, function(err, docs) {
         callback(err, docs);
     });
