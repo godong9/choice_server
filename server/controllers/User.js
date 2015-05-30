@@ -9,10 +9,6 @@ function UserCtrl() {
 }
 
 UserCtrl.getAllUsers = function (req, res) {
-    var errors;
-    req.checkQuery('admin', 'Permission denied').notEmpty().isIn(["true"]);
-    errors = req.validationErrors();
-    if (errors) return res.status(400).send(RService.ERROR(errors));
     User.getUsers({}, function(err, docs) {
         if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(docs));
@@ -70,11 +66,11 @@ UserCtrl.login = function (req, res) {
     req.checkBody('deviceId', 'Invalid value').notEmpty().isAlphanumeric();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
-    criteria = { _id: req.body.deviceId };
+    criteria = { deviceId: req.body.deviceId };
     User.getUser(criteria, function(err, doc) {
         if (err) return res.status(400).send(RService.ERROR(err));
         if (!doc) res.status(200).send(RService.ERROR("fail"));
-        SessionService.registerSession(doc);
+        SessionService.registerSession(req, doc);
         res.status(200).send(RService.SUCCESS(doc));
     });
 };
