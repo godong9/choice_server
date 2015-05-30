@@ -19,6 +19,13 @@ router.get('/id/:id', userCtrl.getUser);
  */
 router.post('/save', userCtrl.saveUser);
 
+
+/**
+ * PUT Update user
+ */
+router.put('/update/id/:id', userCtrl.updateUser);
+
+
 /**
  * POST User login
  */

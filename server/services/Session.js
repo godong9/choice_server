@@ -9,6 +9,7 @@ SessionService.hasSession = function (req) {
 SessionService.getSession = function (req) {
     var data = {
         _id: req.session._id,
+        deviceId: req.session.deviceId,
         name: req.session.name,
         profileUrl: req.session.profileUrl
     };
@@ -17,6 +18,7 @@ SessionService.getSession = function (req) {
 
 SessionService.registerSession = function (req, user) {
     req.session._id = user._id;
+    req.session.deviceId = user.deviceId;
     req.session.name = user.name;
     req.session.profileUrl = user.profileUrl;
 };

@@ -18,48 +18,37 @@ var UserSchema = new Schema({
  */
 
 UserSchema.statics.getUser = function (criteria, projection, options, callback) {
-    if (arguments.length === 2) {
-        callback = projection;
-    }
-    if (arguments.length === 3) {
-        callback = options;
-    }
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
+
     criteria = criteria || {};
     projection = (typeof projection === 'function') ? {} : projection;
     options = (typeof options === 'function') ? {} : options;
 
-    this.findOne(criteria, projection, options, function(err, doc) {
-        callback(err, doc);
-    });
+    this.findOne(criteria, projection, options, callback);
 };
 
 UserSchema.statics.getUsers = function (criteria, projection, options, callback) {
-    if (arguments.length === 2) {
-        callback = projection;
-    }
-    if (arguments.length === 3) {
-        callback = options;
-    }
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
     criteria = criteria || {};
     projection = (typeof projection === 'function') ? {} : projection;
     options = (typeof options === 'function') ? {} : options;
 
-    this.find(criteria, projection, options, function(err, docs) {
-        callback(err, docs);
-    });
+    this.find(criteria, projection, options, callback);
 };
 
 UserSchema.statics.saveUser = function (doc, callback) {
-    if (!doc) {
-        return;
-    }
+    if (!doc) return;
     doc.createTime = doc.createTime ? doc.createTime : new Date();
 
-    this.create(doc, function(err, result) {
-        callback(err, result);
-    });
+    this.create(doc, callback);
 };
 
+UserSchema.statics.updateUser = function (criteria, data, callback) {
+    if (!criteria || !data) return;
 
+    this.update(criteria, data, callback);
+};
 
 module.exports = mongoose.model('User', UserSchema);

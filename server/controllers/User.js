@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var RService = require('../services/Result');
+var SessionService = require('../services/Session');
 var async = require('async');
 
 function UserCtrl() {
@@ -11,12 +12,10 @@ UserCtrl.getAllUsers = function (req, res) {
     var errors;
     req.checkQuery('admin', 'Permission denied').notEmpty().isIn(["true"]);
     errors = req.validationErrors();
-    if (errors) {
-        res.status(400).send(RService.ERROR(errors));
-        return;
-    }
+    if (errors) return res.status(400).send(RService.ERROR(errors));
     User.getUsers({}, function(err, docs) {
-       res.status(200).send(RService.SUCCESS(docs));
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(docs));
     });
 };
 
@@ -27,15 +26,17 @@ UserCtrl.getUser = function (req, res) {
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
     User.getUser(criteria, function(err, doc) {
-        if (errors) return res.status(400).send(RService.ERROR(err));
+        if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(doc || {}));
     });
 };
 
 UserCtrl.saveUser = function (req, res) {
     var errors, user;
-    req.checkBody('deviceId', 'Invalid value').notEmpty();
+    req.checkBody('deviceId', 'Invalid value').notEmpty().isAlphanumeric();
     req.checkBody('name', 'Invalid value').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
     user = {
         deviceId: req.body.deviceId,
         name: req.body.name,
@@ -44,14 +45,38 @@ UserCtrl.saveUser = function (req, res) {
     };
 
     User.saveUser(user, function(err, doc) {
-        if (errors) return res.status(400).send(RService.ERROR(err));
+        if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(doc || {}));
     });
 };
 
-UserCtrl.login = function (req, res) {
-    // TODO: 디바이스 ID 받아서 가입 안되어 실패 리턴. 가입 되어 있으면 유저 데이터로 세션 등록 후 유저 정보 내려줌!
+UserCtrl.updateUser = function (req, res) {
+    var errors, criteria, data;
+    req.checkParams('id', 'Invalid value').notEmpty().isAlphanumeric();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.params.id };
+    data = req.body;
 
+    User.updateUser(criteria, data, function(err, result) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(result));
+    });
+};
+
+
+UserCtrl.login = function (req, res) {
+    var errors, criteria;
+    req.checkBody('deviceId', 'Invalid value').notEmpty().isAlphanumeric();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.body.deviceId };
+    User.getUser(criteria, function(err, doc) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        if (!doc) res.status(200).send(RService.ERROR("fail"));
+        SessionService.registerSession(doc);
+        res.status(200).send(RService.SUCCESS(doc));
+    });
 };
 
 module.exports = UserCtrl;
