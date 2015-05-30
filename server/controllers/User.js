@@ -1,5 +1,7 @@
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var log4js = require('log4js');
+var logger = log4js.getLogger('controllers/User');
 var RService = require('../services/Result');
 var SessionService = require('../services/Session');
 var async = require('async');
@@ -21,6 +23,7 @@ UserCtrl.getUser = function (req, res) {
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
+
     User.getUser(criteria, function(err, doc) {
         if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(doc || {}));
@@ -39,6 +42,7 @@ UserCtrl.saveUser = function (req, res) {
         profileUrl: req.body.profileUrl,
         gender: req.body.gender
     };
+    logger.debug("Save user: ", user);
 
     User.saveUser(user, function(err, doc) {
         if (err) return res.status(400).send(RService.ERROR(err));
@@ -53,6 +57,7 @@ UserCtrl.updateUser = function (req, res) {
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
     data = req.body;
+    logger.debug("Update data: ", data);
 
     User.updateUser(criteria, data, function(err, result) {
         if (err) return res.status(400).send(RService.ERROR(err));

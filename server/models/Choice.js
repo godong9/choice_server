@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
 var ChoiceSchema = new Schema({
     title: { type: String, required: true }, // 제목
     description: { type: String, default: '' }, // 설명
-    category: { type: Number, required: true }, // 1: 먹기, 2: 입기, 3: 놀기, 4: 쉬기, 5: 기타
+    tags: { type: Array, default: [] }, // 태그 목록
     item1: {  // 항목1 정보
         name: String, // 항목 이름
         image: String, // 이미지 URL
@@ -24,9 +24,10 @@ var ChoiceSchema = new Schema({
         image: String, // 이미지 URL
         voters: Array // 투표한 사람 ID 배열
     },
-    finalResult: { type: String }, // 최종 선택한 결과 (item1 or item2 or item3)
+    finalResult: { type: String, default: '' }, // 최종 선택한 결과 (item1 or item2 or item3)
     voters: { type: Array, default: [] }, // 투표한 사람 전체 ID 배열
     writer: { type: String, required: true }, // 작성한 유저 ID
+    popularity: { type: Number, default: 0 }, // 인기도
     updateTime: { type: Date, required: true }, // 업데이트된 시간
     createTime: { type: Date, required: true }, // 생성 시간
 
@@ -40,8 +41,33 @@ var ChoiceSchema = new Schema({
  * Model Methods
  */
 
-ChoiceSchema.statics.getChoices = function (criteria, projection, options, callback) {
+ChoiceSchema.statics.getChoice = function (criteria, projection, options, callback) {
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
 
+    criteria = criteria || {};
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
+
+    this.findOne(criteria, projection, options, callback);
+};
+
+ChoiceSchema.statics.getChoices = function (criteria, projection, options, callback) {
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
+    criteria = criteria || {};
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
+
+    this.find(criteria, projection, options, callback);
+};
+
+ChoiceSchema.statics.saveChoice = function (doc, callback) {
+    if (!doc) return;
+    doc.createTime = doc.createTime ? doc.createTime : new Date();
+    doc.updateTime = doc.updateTime ? doc.updateTime : new Date();
+
+    this.create(doc, callback);
 };
 
 module.exports = mongoose.model('Choice', ChoiceSchema);
