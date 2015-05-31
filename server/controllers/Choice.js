@@ -56,7 +56,8 @@ ChoiceCtrl.saveChoice = function (req, res) {
         tags: req.body.tags,
         item1: req.body.item1,
         item2: req.body.item2,
-        item3: req.body.item3
+        item3: req.body.item3,
+        writer: req.body.writer
     };
     logger.debug("Save choice: ", choice);
 

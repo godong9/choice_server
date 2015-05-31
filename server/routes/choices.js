@@ -2,7 +2,6 @@ var express = require('express');
 var router = express.Router();
 var choiceCtrl = require('../controllers/Choice');
 
-
 /**
  * ---------
  * ## **GET choice**
@@ -36,7 +35,7 @@ router.get('/id/:id', choiceCtrl.getChoice);
  *  REQUEST
  *   - GET /ajax/choice/list
  *  RESPONSE
- *   -
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"556a7981a24305fc0abec558","title":"야식 뭐먹?","writer":"556952b2e004fb830256666d","createTime":"2015-05-31T03:01:21.269Z","updateTime":"2015-05-31T03:01:21.269Z","popularity":0,"voters":[],"finalResult":"","tags":["야식","치킨","피자"],"description":"야식 뭐먹을까?","__v":0,"item3":{"voters":[]},"item2":{"name":"피자","voters":[]},"item1":{"name":"치킨","voters":[]}}]}
  *
  */
 router.get('/list', choiceCtrl.getChoices);
@@ -46,7 +45,7 @@ router.get('/list', choiceCtrl.getChoices);
  * ## **POST choice**
  *  - 선택 항목 저장하는 API
  *
- * ### URL: /ajax/choice
+ * ### URL: /ajax/choice/save
  * ### TYPE: POST
  *
  * @param {String} req.body.title - 제목
@@ -61,15 +60,16 @@ router.get('/list', choiceCtrl.getChoices);
  * @param {JSONObject} [req.body.item3] - 아이템3에 해당하는 정보
  * @param {String} [req.body.item3.name] - 아이템3 이름
  * @param {String} [req.body.item3.image] - 아이템3 이미지 URL
+ * @param {String} req.body.writer - 작성자 ID
  *
  * @example
  *  REQUEST
- *   - POST /ajax/choice
+ *   - POST /ajax/choice/save
  *  RESPONSE
- *   - 
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"__v":0,"title":"야식 뭐먹?","writer":"556952b2e004fb830256666d","createTime":"2015-05-31T03:01:21.269Z","updateTime":"2015-05-31T03:01:21.269Z","_id":"556a7981a24305fc0abec558","popularity":0,"voters":[],"finalResult":"","item3":{"voters":[]},"item2":{"name":"피자","voters":[]},"item1":{"name":"치킨","voters":[]},"tags":["야식","치킨","피자"],"description":"야식 뭐먹을까?"}}
  *
  */
-router.post('/', choiceCtrl.saveChoice);
+router.post('/save', choiceCtrl.saveChoice);
 
 
 module.exports = router;
