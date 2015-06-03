@@ -5,20 +5,29 @@ var logger = log4js.getLogger('controllers/Choice');
 var RService = require('../services/Result');
 var SessionService = require('../services/Session');
 var async = require('async');
+var _ = require('underscore');
 
 function ChoiceCtrl() {
 
 }
 
 ChoiceCtrl.getChoice = function (req, res) {
-    var errors, criteria;
+    var errors, criteria, me;
     req.checkParams('id', 'Invalid value').notEmpty().isAlphanumeric();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
-
     Choice.getChoice(criteria, function(err, doc) {
         if (err) return res.status(400).send(RService.ERROR(err));
+        if (!SessionService.hasSession(req)) {
+            doc.isWriter = false;
+            doc.isAlreadyVote = false;
+        } else {
+            me = SessionService.getSession(req);
+            doc.isWriter = (doc.writer === me._id);
+            doc.isAlreadyVote = (doc.voters.indexOf(me._id) > -1);
+        }
+
         res.status(200).send(RService.SUCCESS(doc));
     });
 };

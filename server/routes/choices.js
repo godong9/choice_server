@@ -10,11 +10,15 @@ var choiceCtrl = require('../controllers/Choice');
  * ### URL: /ajax/choice/id/:id
  * ### TYPE: GET
  *
+ * @returns {Number} resultCode - 0 (SUCCESS), 1 (FAILURE)
+ * @returns {String} resultMsg - 결과 메시지
+ * @returns {JSONObject} data - 결과 데이터
+ *
  * @example
  *  REQUEST
  *   - GET /ajax/choice/id/556a7981a24305fc0abec558
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"556a7981a24305fc0abec558","title":"야식 뭐먹?","writer":"556952b2e004fb830256666d","createTime":"2015-05-31T03:01:21.269Z","updateTime":"2015-05-31T03:01:21.269Z","popularity":0,"voters":[],"finalResult":"","tags":["야식","치킨","피자"],"description":"야식 뭐먹을까?","__v":0,"item3":{"voters":[]},"item2":{"name":"피자","voters":[]},"item1":{"name":"치킨","voters":[]}}}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"isAlreadyVote":false,"isWriter":false,"_id":"556a7981a24305fc0abec558","title":"야식 뭐먹?","writer":"556952b2e004fb830256666d","createTime":"2015-05-31T03:01:21.269Z","updateTime":"2015-05-31T03:01:21.269Z","popularity":0,"voters":[],"finalResult":"","tags":["야식","치킨","피자"],"description":"야식 뭐먹을까?","__v":0,"item3":{"voters":[]},"item2":{"name":"피자","voters":[]},"item1":{"name":"치킨","voters":[]}}}
  */
 router.get('/id/:id', choiceCtrl.getChoice);
 

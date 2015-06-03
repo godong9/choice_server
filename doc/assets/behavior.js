@@ -42,7 +42,58 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "pageTitle": "choices",
         "title": "choices"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/choice/id/:id",
+            "slug": "url-ajaxchoiceidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/choice/list",
+            "slug": "url-ajaxchoicelist"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/choice/save",
+            "slug": "url-ajaxchoicesave"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }
+      ]
     }, {
       "type": "file",
       "data": {
