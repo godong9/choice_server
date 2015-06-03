@@ -18,12 +18,13 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "name": "JavaScript"
         },
         "sourcePath": "/Users/godong/Desktop/Project/choice_server/server/routes/index.js",
-        "projectPath": "server/routes/index.js",
+        "projectPath": "/Users/godong/Desktop/Project/choice_server/server/routes/index.js",
         "targetPath": "index",
         "pageTitle": "index",
         "title": "index"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": []
     }, {
       "type": "file",
       "data": {
@@ -37,7 +38,7 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "name": "JavaScript"
         },
         "sourcePath": "/Users/godong/Desktop/Project/choice_server/server/routes/choices.js",
-        "projectPath": "server/routes/choices.js",
+        "projectPath": "/Users/godong/Desktop/Project/choice_server/server/routes/choices.js",
         "targetPath": "choices",
         "pageTitle": "choices",
         "title": "choices"
@@ -107,12 +108,95 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "name": "JavaScript"
         },
         "sourcePath": "/Users/godong/Desktop/Project/choice_server/server/routes/users.js",
-        "projectPath": "server/routes/users.js",
+        "projectPath": "/Users/godong/Desktop/Project/choice_server/server/routes/users.js",
         "targetPath": "users",
         "pageTitle": "users",
         "title": "users"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/all",
+            "slug": "url-ajaxuserall"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/id/:id",
+            "slug": "url-ajaxuseridid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/save",
+            "slug": "url-ajaxusersave"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/update/id/:id",
+            "slug": "url-ajaxuserupdateidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: PUT",
+            "slug": "type-put"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/login",
+            "slug": "url-ajaxuserlogin"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }
+      ]
     }
   ];
 

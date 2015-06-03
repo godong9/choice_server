@@ -1,0 +1,86 @@
+<!DOCTYPE html><html lang="en"><head><title>choices</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="choices"><meta name="groc-project-path" content="/Users/godong/Desktop/Project/choice_server/server/routes/choices.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">/Users/godong/Desktop/Project/choice_server/server/routes/choices.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
+<span class="hljs-keyword">var</span> choiceCtrl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../controllers/Choice'</span>);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-get-choice-"><strong>GET choice</strong></h2>
+<ul>
+<li>선택 항목 자세한 정보 가져오는 API</li>
+</ul>
+<h3 id="url-ajaxchoiceidid">URL: /ajax/choice/id/:id</h3>
+<h3 id="type-get">TYPE: GET</h3>
+<p><strong>Returns a Number</strong><br/>(resultCode - 0 (SUCCESS), 1 (FAILURE))<br/><strong>and</strong> <strong>Returns a String</strong><br/>(resultMsg - 결과 메시지)<br/><strong>and</strong> <strong>Returns a JSONObject</strong><br/>(data - 결과 데이터)</p>
+<p>Example:</p>
+<pre><code>REQUEST
+ - GET /ajax/choice/id/556a7981a24305fc0abec558
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;isAlreadyVote&quot;:false,&quot;isWriter&quot;:false,&quot;_id&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;title&quot;:&quot;야식 뭐먹?&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;updateTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;popularity&quot;:0,&quot;voters&quot;:[],&quot;finalResult&quot;:&quot;&quot;,&quot;tags&quot;:[&quot;야식&quot;,&quot;치킨&quot;,&quot;피자&quot;],&quot;description&quot;:&quot;야식 뭐먹을까?&quot;,&quot;__v&quot;:0,&quot;item3&quot;:{&quot;voters&quot;:[]},&quot;item2&quot;:{&quot;name&quot;:&quot;피자&quot;,&quot;voters&quot;:[]},&quot;item1&quot;:{&quot;name&quot;:&quot;치킨&quot;,&quot;voters&quot;:[]}}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, choiceCtrl.getChoice);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-get-choices-"><strong>GET choices</strong></h2>
+<ul>
+<li>선택 목록 가져오는 API</li>
+</ul>
+<h3 id="url-ajaxchoicelist">URL: /ajax/choice/list</h3>
+<h3 id="type-get">TYPE: GET</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>tags is optional and must be a String.</strong><br/>(- 검색할 태그)</p>
+</li>
+<li><p><strong>sortBy is optional and must be a String.</strong><br/>(- 정렬 기준 (latest: 최신순(Default), popular: 인기순))</p>
+</li>
+<li><p><strong>start is optional and must be a String.</strong><br/>(- 시작 위치. 0(Default))</p>
+</li>
+<li><p><strong>rows is optional and must be a String.</strong><br/>(- 가져올 개수. 20(Default))</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - GET /ajax/choice/list
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;title&quot;:&quot;야식 뭐먹?&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;updateTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;popularity&quot;:0,&quot;voters&quot;:[],&quot;finalResult&quot;:&quot;&quot;,&quot;tags&quot;:[&quot;야식&quot;,&quot;치킨&quot;,&quot;피자&quot;],&quot;description&quot;:&quot;야식 뭐먹을까?&quot;,&quot;__v&quot;:0,&quot;item3&quot;:{&quot;voters&quot;:[]},&quot;item2&quot;:{&quot;name&quot;:&quot;피자&quot;,&quot;voters&quot;:[]},&quot;item1&quot;:{&quot;name&quot;:&quot;치킨&quot;,&quot;voters&quot;:[]}}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/list'</span>, choiceCtrl.getChoices);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-choice-"><strong>POST choice</strong></h2>
+<ul>
+<li>선택 항목 저장하는 API</li>
+</ul>
+<h3 id="url-ajaxchoicesave">URL: /ajax/choice/save</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>title must be a String.</strong><br/>(- 제목)</p>
+</li>
+<li><p><strong>description is optional and must be a String.</strong><br/>(- 자세한 내용)</p>
+</li>
+<li><p><strong>tags is optional and must be an Array.</strong><br/>(- 태그 목록)</p>
+</li>
+<li><p><strong>item1 must be a JSONObject.</strong><br/>(- 아이템1에 해당하는 정보)</p>
+<ul>
+<li><p><strong>item1.name must be a String.</strong><br/>(- 아이템1 이름)</p>
+</li>
+<li><p><strong>item1.image is optional and must be a String.</strong><br/>(- 아이템1 이미지 URL)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>item2 must be a JSONObject.</strong><br/>(- 아이템2에 해당하는 정보)</p>
+<ul>
+<li><p><strong>item2.name must be a String.</strong><br/>(- 아이템2 이름)</p>
+</li>
+<li><p><strong>item2.image is optional and must be a String.</strong><br/>(- 아이템2 이미지 URL)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>item3 is optional and must be a JSONObject.</strong><br/>(- 아이템3에 해당하는 정보)</p>
+<ul>
+<li><p><strong>item3.name is optional and must be a String.</strong><br/>(- 아이템3 이름)</p>
+</li>
+<li><p><strong>item3.image is optional and must be a String.</strong><br/>(- 아이템3 이미지 URL)</p>
+</li>
+</ul>
+</li>
+<li><p><strong>writer must be a String.</strong><br/>(- 작성자 ID)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /ajax/choice/save
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;title&quot;:&quot;야식 뭐먹?&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;updateTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;_id&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;popularity&quot;:0,&quot;voters&quot;:[],&quot;finalResult&quot;:&quot;&quot;,&quot;item3&quot;:{&quot;voters&quot;:[]},&quot;item2&quot;:{&quot;name&quot;:&quot;피자&quot;,&quot;voters&quot;:[]},&quot;item1&quot;:{&quot;name&quot;:&quot;치킨&quot;,&quot;voters&quot;:[]},&quot;tags&quot;:[&quot;야식&quot;,&quot;치킨&quot;,&quot;피자&quot;],&quot;description&quot;:&quot;야식 뭐먹을까?&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, choiceCtrl.saveChoice);
+
+
+<span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

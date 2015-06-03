@@ -1,5 +1,0 @@
-{
-  "glob": [
-    "server/routes/*.js"
-  ]
-}
