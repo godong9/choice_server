@@ -1,8 +1,79 @@
 <!DOCTYPE html><html lang="en"><head><title>users</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="users"><meta name="groc-project-path" content="server/routes/users.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">server/routes/users.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
 <span class="hljs-keyword">var</span> router = express.Router();
-<span class="hljs-keyword">var</span> log4js = <span class="hljs-built_in">require</span>(<span class="hljs-string">'log4js'</span>);
-<span class="hljs-keyword">var</span> logger = log4js.getLogger(<span class="hljs-string">'routes/users'</span>);
-<span class="hljs-keyword">var</span> userCtrl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../controllers/User'</span>);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>GET All users</p></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, userCtrl.getAllUsers);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>POST Save user</p></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, userCtrl.saveUser);</div></div></div><div class="segment"><div class="comments "><div class="wrapper"><p>POST User login</p></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/login'</span>, userCtrl.login);
+<span class="hljs-keyword">var</span> userCtrl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../controllers/User'</span>);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-get-all-users-"><strong>GET All users</strong></h2>
+<ul>
+<li>테스트 위해 모든 유저 목록 가져오는 API</li>
+</ul>
+<h3 id="url-ajaxuserall">URL: /ajax/user/all</h3>
+<h3 id="type-get">TYPE: GET</h3>
+<p>Example:</p>
+<pre><code>REQUEST
+ - GET /ajax/user/all
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;5562ce4b2b3c19cf0b91905c&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:24:59.174Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562ceb322430cde0b1bc280&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:26:43.118Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562cf583ac8c7e90bc76550&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:29:28.739Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562cf76fdd5cbed0b7f9022&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:29:58.038Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562d01fe0b90f040c1b13b2&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:32:47.127Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562d05f6bef4f0e0c0c474e&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:33:51.647Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, userCtrl.getAllUsers);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-get-user-by-id-"><strong>GET User by id</strong></h2>
+<ul>
+<li>id로 유저 정보 가져오는 API</li>
+</ul>
+<h3 id="url-ajaxuseridid">URL: /ajax/user/id/:id</h3>
+<h3 id="type-get">TYPE: GET</h3>
+<p>Example:</p>
+<pre><code>REQUEST
+ - GET /ajax/user/id/5562ce4b2b3c19cf0b91905c
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;5562ce4b2b3c19cf0b91905c&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:24:59.174Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, userCtrl.getUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-save-user-"><strong>POST Save user</strong></h2>
+<ul>
+<li>유저 추가하는 API</li>
+</ul>
+<h3 id="url-ajaxusersave">URL: /ajax/user/save</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>deviceId must be a String.</strong><br/>(- 디바이스 ID)</p>
+</li>
+<li><p><strong>name must be a String.</strong><br/>(- 닉네임)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /ajax/user/save
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;deviceId&quot;:&quot;a1b2c3&quot;,&quot;name&quot;:&quot;test&quot;,&quot;createTime&quot;:&quot;2015-05-30T06:03:30.541Z&quot;,&quot;_id&quot;:&quot;556952b2e004fb830256666d&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, userCtrl.saveUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-put-update-user-"><strong>PUT Update user</strong></h2>
+<ul>
+<li>유저 정보 업데이트 하는 API</li>
+</ul>
+<h3 id="url-ajaxuserupdateidid">URL: /ajax/user/update/id/:id</h3>
+<h3 id="type-put">TYPE: PUT</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>name is optional and must be a String.</strong><br/>(- 닉네임)</p>
+</li>
+<li><p><strong>profileUrl is optional and must be a String.</strong><br/>(- 프로필 이미지 주소)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - PUT /ajax/user/update/id/5562ce4b2b3c19cf0b91905c
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;ok&quot;:1,&quot;nModified&quot;:1,&quot;n&quot;:1}}</code></pre></div></div><div class="code"><div class="wrapper">router.put(<span class="hljs-string">'/update/id/:id'</span>, userCtrl.updateUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-user-login-"><strong>POST User login</strong></h2>
+<ul>
+<li>유저 로그인 API</li>
+</ul>
+<h3 id="url-ajaxuserlogin">URL: /ajax/user/login</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><strong>deviceId must be a String.</strong><br/>(- 디바이스 ID)</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /ajax/user/login
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;deviceId&quot;:&quot;a1b2c3&quot;,&quot;name&quot;:&quot;test&quot;,&quot;createTime&quot;:&quot;2015-05-30T06:03:30.541Z&quot;,&quot;__v&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/login'</span>, userCtrl.login);
 
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

@@ -44,8 +44,8 @@ router.get('/id/:id', userCtrl.getUser);
  * ### URL: /ajax/user/save
  * ### TYPE: POST
  *
- * @param {String} req.body.deviceId - 디바이스 ID
- * @param {String} req.body.name - 닉네임
+ * @param {String} deviceId - 디바이스 ID
+ * @param {String} name - 닉네임
  *
  * @example
  *  REQUEST
@@ -64,8 +64,8 @@ router.post('/save', userCtrl.saveUser);
  * ### URL: /ajax/user/update/id/:id
  * ### TYPE: PUT
  *
- * @param {String} [req.body.name] - 닉네임
- * @param {String} [req.body.profileUrl] - 프로필 이미지 주소
+ * @param {String} [name] - 닉네임
+ * @param {String} [profileUrl] - 프로필 이미지 주소
  *
  * @example
  *  REQUEST
@@ -85,7 +85,7 @@ router.put('/update/id/:id', userCtrl.updateUser);
  * ### URL: /ajax/user/login
  * ### TYPE: POST
  *
- * @param {String} req.body.deviceId - 디바이스 ID
+ * @param {String} deviceId - 디바이스 ID
  *
  * @example
  *  REQUEST
