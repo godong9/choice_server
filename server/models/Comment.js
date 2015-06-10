@@ -28,7 +28,21 @@ var CommentSchema = new Schema({
  */
 
 CommentSchema.statics.getComments = function (criteria, projection, options, callback) {
+    if (arguments.length === 2) callback = projection;
+    if (arguments.length === 3) callback = options;
+    criteria = criteria || {};
+    projection = (typeof projection === 'function') ? {} : projection;
+    options = (typeof options === 'function') ? {} : options;
 
+    this.find(criteria, projection, options, callback);
+};
+
+CommentSchema.statics.saveComment = function (doc, callback) {
+    if (!doc) return;
+    doc.createTime = doc.createTime ? doc.createTime : new Date();
+    doc.updateTime = doc.updateTime ? doc.updateTime : new Date();
+
+    this.create(doc, callback);
 };
 
 module.exports = mongoose.model('Comment', CommentSchema);
