@@ -26,6 +26,7 @@ fs.readdirSync(modelsPath).forEach(function (file) {
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var choices = require('./routes/choices');
+var comments = require('./routes/comments');
 
 // Database Setup
 var dbUri = 'mongodb://localhost:27017/choicedb';
@@ -83,6 +84,7 @@ if (app.get('env') === 'production') {
 app.use('/', routes);
 app.use('/ajax/user', users);
 app.use('/ajax/choice', choices);
+app.use('/ajax/comment', comments);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
