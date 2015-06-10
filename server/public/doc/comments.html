@@ -1,0 +1,48 @@
+<!DOCTYPE html><html lang="en"><head><title>comments</title></head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0"><meta name="groc-relative-root" content=""><meta name="groc-document-path" content="comments"><meta name="groc-project-path" content="/Users/godong/Desktop/Project/choice_server/server/routes/comments.js"><link rel="stylesheet" type="text/css" media="all" href="assets/style.css"><script type="text/javascript" src="assets/behavior.js"></script><body><div id="meta"><div class="file-path">/Users/godong/Desktop/Project/choice_server/server/routes/comments.js</div></div><div id="document"><div class="segment"><div class="code"><div class="wrapper"><span class="hljs-keyword">var</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">'express'</span>);
+<span class="hljs-keyword">var</span> router = express.Router();
+<span class="hljs-keyword">var</span> commentCtrl = <span class="hljs-built_in">require</span>(<span class="hljs-string">'../controllers/Comment'</span>);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-get-comments-"><strong>GET comments</strong></h2>
+<ul>
+<li>댓글 목록 가져오는 API</li>
+</ul>
+<h3 id="url-ajaxcommentlist">URL: /ajax/comment/list</h3>
+<h3 id="type-get">TYPE: GET</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>choiceId is optional and must be a String.</strong><br/>(- 댓글을 달려있는 선택 항목 ID)</p>
+</li>
+<li><p><strong>writer is optional and must be a String.</strong><br/>(- 작성한 사람 ID)</p>
+</li>
+<li><p><strong>start is optional and must be a String.</strong><br/>(- 시작 위치. 0(Default))</p>
+</li>
+<li><p><strong>rows is optional and must be a String.</strong><br/>(- 가져올 개수. 20(Default))</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - GET /ajax/comment/list?choiceId=556a7981a24305fc0abec558
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;55782cc6f89a41e104e96cdc&quot;,&quot;choiceId&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;content&quot;:&quot;댓글 테스트&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;updateTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;unlikers&quot;:[],&quot;likers&quot;:[],&quot;unlikeCount&quot;:0,&quot;likeCount&quot;:0,&quot;__v&quot;:0}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/list'</span>, commentCtrl.getComments);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-post-comment-"><strong>POST comment</strong></h2>
+<ul>
+<li>댓글 저장하는 API</li>
+</ul>
+<h3 id="url-ajaxcommentsave">URL: /ajax/comment/save</h3>
+<h3 id="type-post">TYPE: POST</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>choiceId must be a String.</strong><br/>(- 댓글을 추가할 선택 항목 ID)</p>
+</li>
+<li><p><strong>content must be a String.</strong><br/>(- 댓글 내용)</p>
+</li>
+<li><p><strong>writer must be a String.</strong><br/>(- 작성한 사람 ID)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - POST /ajax/comment/save
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;choiceId&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;content&quot;:&quot;댓글 테스트&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;updateTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;_id&quot;:&quot;55782cc6f89a41e104e96cdc&quot;,&quot;unlikers&quot;:[],&quot;likers&quot;:[],&quot;unlikeCount&quot;:0,&quot;likeCount&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, commentCtrl.saveComment);
+
+
+<span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>
