@@ -42,6 +42,7 @@ ChoiceCtrl.getChoices = function (req, res) {
     };
 
     if (req.query.tags) criteria.tags = req.query.tags; // 태그 있을 때 태그로 쿼리
+    if (req.query.writer) criteria.writer = req.query.writer;
     if (req.query.sortBy && req.query.sortBy === "latest") options.sort = { updateTime: -1 };
     if (req.query.sortBy && req.query.sortBy === "popular") options.sort = { popularity: -1 };
     if (req.query.start) options.skip = req.query.start;
@@ -57,6 +58,7 @@ ChoiceCtrl.saveChoice = function (req, res) {
     var errors, choice;
     req.checkBody('item1.name', 'Invalid value').notEmpty();
     req.checkBody('item2.name', 'Invalid value').notEmpty();
+    req.checkBody('writer', 'Invalid value').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     choice = {

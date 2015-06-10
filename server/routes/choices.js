@@ -31,6 +31,7 @@ router.get('/id/:id', choiceCtrl.getChoice);
  * ### TYPE: GET
  *
  * @param {String} [tags] - 검색할 태그
+ * @param {String} [writer] - 작성한 사람 ID
  * @param {String} [sortBy] - 정렬 기준 (latest: 최신순(Default), popular: 인기순)
  * @param {String} [start] - 시작 위치. 0(Default)
  * @param {String} [rows] - 가져올 개수. 20(Default)
