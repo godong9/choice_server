@@ -63,11 +63,23 @@ ChoiceSchema.statics.getChoices = function (criteria, projection, options, callb
 };
 
 ChoiceSchema.statics.saveChoice = function (doc, callback) {
-    if (!doc) return;
+    if (!doc) return callback("Doc is empty!");
     doc.createTime = doc.createTime ? doc.createTime : new Date();
     doc.updateTime = doc.updateTime ? doc.updateTime : new Date();
 
     this.create(doc, callback);
+};
+
+ChoiceSchema.statics.updateChoice = function (criteria, userId, doc, callback) {
+    var self = this;
+    if (!doc) return callback("Doc is empty!");
+    doc.updateTime = new Date();
+
+    this.findOne(criteria, function (err, choice) {
+        if (err || !choice) return callback(err || "Choice is empty!");
+        if (choice.writer !== userId) return callback("Permission Denied!");
+        self.update(criteria, doc, callback);
+    });
 };
 
 module.exports = mongoose.model('Choice', ChoiceSchema);

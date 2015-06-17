@@ -65,7 +65,6 @@ router.get('/list', choiceCtrl.getChoices);
  * @param {JSONObject} [item3] - 아이템3에 해당하는 정보
  * @param {String} [item3.name] - 아이템3 이름
  * @param {String} [item3.image] - 아이템3 이미지 URL
- * @param {String} writer - 작성자 ID
  *
  * @example
  *  REQUEST
@@ -75,6 +74,27 @@ router.get('/list', choiceCtrl.getChoices);
  *
  */
 router.post('/save', choiceCtrl.saveChoice);
+
+/**
+ * ---------
+ * ## **PUT choice**
+ *  - 선택 항목 수정하는 API
+ *
+ * ### URL: /ajax/choice/update/id/:id
+ * ### TYPE: PUT
+ *
+ * @param {String} [title] - 제목
+ * @param {String} [description] - 자세한 내용
+ * @param {Array} [tags] - 태그 목록
+ *
+ * @example
+ *  REQUEST
+ *   - PUT /ajax/choice/update/id/556a7981a24305fc0abec558
+ *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"nModified":1,"n":1}}
+ *
+ */
+router.put('/update/id/:id', choiceCtrl.updateChoice);
 
 
 module.exports = router;

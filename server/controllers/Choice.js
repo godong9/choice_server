@@ -68,11 +68,30 @@ ChoiceCtrl.saveChoice = function (req, res) {
         item1: req.body.item1,
         item2: req.body.item2,
         item3: req.body.item3,
-        writer: req.body.writer
+        writer: SessionService.getSessionUserId(req)
     };
     logger.debug("Save choice: ", choice);
 
     Choice.saveChoice(choice, function(err, doc) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(doc || {}));
+    });
+};
+
+ChoiceCtrl.updateChoice = function (req, res) {
+    var errors, criteria, userId, choice;
+    req.checkParams('id', 'Invalid value').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.params.id };
+    userId = SessionService.getSessionUserId();
+    choice = {};
+    if (req.body.title) choice.title = req.body.title;
+    if (req.body.description) choice.description = req.body.description;
+    if (req.body.tags) choice.tags = req.body.tags;
+    logger.debug("Update choice: ", choice);
+
+    Choice.updateChoice(criteria, userId, choice, function(err, doc) {
         if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(doc || {}));
     });
