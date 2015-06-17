@@ -11,6 +11,23 @@ function CommentCtrl() {
 
 }
 
+function makeCommentsInfo(req, docs) {
+    if (!SessionService.hasSession(req)) return;
+    var userId = SessionService.getSession()._id;
+    for (var i=0; i<docs.length; i++) {
+        if (userId === docs[i].writer) {
+            docs[i].isWriter = true;
+        }
+        if (docs[i].likers.indexOf(userId) > -1) {
+            docs[i].isAlreadyLike = true;
+        }
+        if (docs[i].unlikers.indexOf(userId) > -1) {
+            docs[i].isAlreadyUnlike = true;
+        }
+        logger.debug(docs[i]);
+    }
+}
+
 CommentCtrl.getComments = function (req, res) {
     var criteria = {};
     var projection = {};
@@ -29,6 +46,7 @@ CommentCtrl.getComments = function (req, res) {
 
     Comment.getComments(criteria, projection, options, function(err, docs) {
         if (err) return res.status(400).send(RService.ERROR(err));
+        makeCommentsInfo(req, docs);
         res.status(200).send(RService.SUCCESS(docs));
     });
 };
@@ -53,5 +71,47 @@ CommentCtrl.saveComment = function (req, res) {
     });
 };
 
+CommentCtrl.likeComment = function (req, res) {
+    var errors, criteria, user;
+    req.checkParams('id', 'Invalid value').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.params.id };
+    user = SessionService.getSession();
+
+    Comment.likeComment(criteria, user, function(err, result) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(result));
+    });
+};
+
+CommentCtrl.unlikeComment = function (req, res) {
+    var errors, criteria, user;
+    req.checkParams('id', 'Invalid value').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.params.id };
+    user = SessionService.getSession();
+
+    Comment.unlikeComment(criteria, user, function(err, result) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(result));
+    });
+};
+
+CommentCtrl.deleteComment = function (req, res) {
+    var errors, criteria, user;
+    req.checkParams('id', 'Invalid value').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.params.id };
+    user = SessionService.getSession();
+    console.log(req.params.id);
+
+    Comment.deleteComment(criteria, user, function(err, result) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(result));
+    });
+};
 
 module.exports = CommentCtrl;

@@ -38,11 +38,57 @@ CommentSchema.statics.getComments = function (criteria, projection, options, cal
 };
 
 CommentSchema.statics.saveComment = function (doc, callback) {
-    if (!doc) return;
+    if (!doc) return callback("Doc is empty!");
     doc.createTime = doc.createTime ? doc.createTime : new Date();
     doc.updateTime = doc.updateTime ? doc.updateTime : new Date();
 
     this.create(doc, callback);
+};
+
+CommentSchema.statics.likeComment = function (criteria, user, callback) {
+    var self = this;
+    if (!user || !user._id) return callback("User is empty!");
+
+    this.findOne(criteria, function(err, doc) {
+        if (err || !doc) {
+            return callback(err || "Doc is empty!");
+        }
+        if (doc.likers.indexOf(user._id) > -1) {
+            return callback("Already like!");
+        }
+        self.update(criteria, { $push: { likers: user._id }, $inc: { likeCount: 1 } }, callback);
+    });
+};
+
+CommentSchema.statics.unlikeComment = function (criteria, user, callback) {
+    var self = this;
+    if (!user || !user._id) return callback("User is empty!");
+
+    this.findOne(criteria, function(err, doc) {
+        if (err || !doc) {
+            return callback(err || "Doc is empty!");
+        }
+        if (doc.unlikers.indexOf(user._id) > -1) {
+            return callback("Already unlike!");
+        }
+        self.update(criteria, { $push: { unlikers: user._id }, $inc: { unlikeCount: 1 } }, callback);
+    });
+};
+
+
+CommentSchema.statics.deleteComment = function (criteria, user, callback) {
+    var self = this;
+    if (!user || !user._id) return callback("User is empty!");
+
+    this.findOne(criteria, function(err, doc) {
+        if (err || !doc) {
+            return callback(err || "Doc is empty!");
+        }
+        if (doc.writer !== user._id) {
+            return callback("Permission Denied!");
+        }
+        self.remove(criteria, callback);
+    });
 };
 
 module.exports = mongoose.model('Comment', CommentSchema);

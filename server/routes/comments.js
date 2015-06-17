@@ -45,5 +45,56 @@ router.get('/list', commentCtrl.getComments);
  */
 router.post('/save', commentCtrl.saveComment);
 
+/**
+ * ---------
+ * ## **PUT comment**
+ *  - 댓글 공감 API
+ *
+ * ### URL: /ajax/comment/like/id/:id
+ * ### TYPE: PUT
+ *
+ * @example
+ *  REQUEST
+ *   - POST /ajax/comment/like/id/55782cc6f89a41e104e96cdc
+ *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"nModified":1,"n":1}}
+ *
+ */
+router.put('/like/id/:id', commentCtrl.likeComment);
+
+/**
+ * ---------
+ * ## **PUT comment**
+ *  - 댓글 비공감 API
+ *
+ * ### URL: /ajax/comment/unlike/id/:id
+ * ### TYPE: PUT
+ *
+ * @example
+ *  REQUEST
+ *   - POST /ajax/comment/unlike/id/55782cc6f89a41e104e96cdc
+ *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"nModified":1,"n":1}}
+ *
+ */
+router.put('/unlike/id/:id', commentCtrl.unlikeComment);
+
+/**
+ * ---------
+ * ## **DELETE comment**
+ *  - 댓글 삭제 API
+ *
+ * ### URL: /ajax/comment/delete/id/:id
+ * ### TYPE: DELETE
+ *
+ * @example
+ *  REQUEST
+ *   - POST /ajax/comment/delete/id/55782cc6f89a41e104e96cdc
+ *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"n":1}}
+ *
+ */
+router.delete('/delete/id/:id', commentCtrl.deleteComment);
+
 
 module.exports = router;
