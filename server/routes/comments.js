@@ -55,7 +55,7 @@ router.post('/save', commentCtrl.saveComment);
  *
  * @example
  *  REQUEST
- *   - POST /ajax/comment/like/id/55782cc6f89a41e104e96cdc
+ *   - PUT /ajax/comment/like/id/55782cc6f89a41e104e96cdc
  *  RESPONSE
  *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"nModified":1,"n":1}}
  *
@@ -72,7 +72,7 @@ router.put('/like/id/:id', commentCtrl.likeComment);
  *
  * @example
  *  REQUEST
- *   - POST /ajax/comment/unlike/id/55782cc6f89a41e104e96cdc
+ *   - PUT /ajax/comment/unlike/id/55782cc6f89a41e104e96cdc
  *  RESPONSE
  *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"nModified":1,"n":1}}
  *
@@ -89,7 +89,7 @@ router.put('/unlike/id/:id', commentCtrl.unlikeComment);
  *
  * @example
  *  REQUEST
- *   - POST /ajax/comment/delete/id/55782cc6f89a41e104e96cdc
+ *   - DELETE /ajax/comment/delete/id/55782cc6f89a41e104e96cdc
  *  RESPONSE
  *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"n":1}}
  *

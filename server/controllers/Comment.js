@@ -13,7 +13,7 @@ function CommentCtrl() {
 
 function makeCommentsInfo(req, docs) {
     if (!SessionService.hasSession(req)) return;
-    var userId = SessionService.getSession()._id;
+    var userId = SessionService.getSessionUserId();
     for (var i=0; i<docs.length; i++) {
         if (userId === docs[i].writer) {
             docs[i].isWriter = true;
@@ -72,43 +72,42 @@ CommentCtrl.saveComment = function (req, res) {
 };
 
 CommentCtrl.likeComment = function (req, res) {
-    var errors, criteria, user;
+    var errors, criteria, userId;
     req.checkParams('id', 'Invalid value').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
-    user = SessionService.getSession();
+    userId = SessionService.getSessionUserId();
 
-    Comment.likeComment(criteria, user, function(err, result) {
+    Comment.likeComment(criteria, userId, function(err, result) {
         if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(result));
     });
 };
 
 CommentCtrl.unlikeComment = function (req, res) {
-    var errors, criteria, user;
+    var errors, criteria, userId;
     req.checkParams('id', 'Invalid value').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
-    user = SessionService.getSession();
+    userId = SessionService.getSessionUserId();
 
-    Comment.unlikeComment(criteria, user, function(err, result) {
+    Comment.unlikeComment(criteria, userId, function(err, result) {
         if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(result));
     });
 };
 
 CommentCtrl.deleteComment = function (req, res) {
-    var errors, criteria, user;
+    var errors, criteria, userId;
     req.checkParams('id', 'Invalid value').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     criteria = { _id: req.params.id };
-    user = SessionService.getSession();
-    console.log(req.params.id);
+    userId = SessionService.getSessionUserId();
 
-    Comment.deleteComment(criteria, user, function(err, result) {
+    Comment.deleteComment(criteria, userId, function(err, result) {
         if (err) return res.status(400).send(RService.ERROR(err));
         res.status(200).send(RService.SUCCESS(result));
     });

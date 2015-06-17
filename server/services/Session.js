@@ -13,8 +13,14 @@ SessionService.getSession = function (req) {
         name: req.session.name,
         profileUrl: req.session.profileUrl
     };
+
     return data;
 };
+
+SessionService.getSessionUserId = function (req) {
+    return req.session._id;
+};
+
 
 SessionService.registerSession = function (req, user) {
     req.session._id = user._id;

@@ -45,48 +45,36 @@ CommentSchema.statics.saveComment = function (doc, callback) {
     this.create(doc, callback);
 };
 
-CommentSchema.statics.likeComment = function (criteria, user, callback) {
+CommentSchema.statics.likeComment = function (criteria, userId, callback) {
     var self = this;
-    if (!user || !user._id) return callback("User is empty!");
+    if (!userId) return callback("User is empty!");
 
     this.findOne(criteria, function(err, doc) {
-        if (err || !doc) {
-            return callback(err || "Doc is empty!");
-        }
-        if (doc.likers.indexOf(user._id) > -1) {
-            return callback("Already like!");
-        }
-        self.update(criteria, { $push: { likers: user._id }, $inc: { likeCount: 1 } }, callback);
+        if (err || !doc) return callback(err || "Doc is empty!");
+        if (doc.likers.indexOf(userId) > -1) return callback("Already like!");
+        self.update(criteria, { $push: { likers: userId }, $inc: { likeCount: 1 } }, callback);
     });
 };
 
-CommentSchema.statics.unlikeComment = function (criteria, user, callback) {
+CommentSchema.statics.unlikeComment = function (criteria, userId, callback) {
     var self = this;
-    if (!user || !user._id) return callback("User is empty!");
+    if (!userId) return callback("User is empty!");
 
     this.findOne(criteria, function(err, doc) {
-        if (err || !doc) {
-            return callback(err || "Doc is empty!");
-        }
-        if (doc.unlikers.indexOf(user._id) > -1) {
-            return callback("Already unlike!");
-        }
-        self.update(criteria, { $push: { unlikers: user._id }, $inc: { unlikeCount: 1 } }, callback);
+        if (err || !doc) return callback(err || "Doc is empty!");
+        if (doc.unlikers.indexOf(userId) > -1) return callback("Already unlike!");
+        self.update(criteria, { $push: { unlikers: userId }, $inc: { unlikeCount: 1 } }, callback);
     });
 };
 
 
-CommentSchema.statics.deleteComment = function (criteria, user, callback) {
+CommentSchema.statics.deleteComment = function (criteria, userId, callback) {
     var self = this;
-    if (!user || !user._id) return callback("User is empty!");
+    if (!userId) return callback("User is empty!");
 
     this.findOne(criteria, function(err, doc) {
-        if (err || !doc) {
-            return callback(err || "Doc is empty!");
-        }
-        if (doc.writer !== user._id) {
-            return callback("Permission Denied!");
-        }
+        if (err || !doc) return callback(err || "Doc is empty!");
+        if (doc.writer !== userId) return callback("Permission Denied!");
         self.remove(criteria, callback);
     });
 };
