@@ -27,6 +27,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var choices = require('./routes/choices');
 var comments = require('./routes/comments');
+var uploads = require('./routes/uploads');
 
 // Database Setup
 var dbUri = 'mongodb://localhost:27017/choicedb';
@@ -85,6 +86,7 @@ app.use('/', routes);
 app.use('/ajax/user', users);
 app.use('/ajax/choice', choices);
 app.use('/ajax/comment', comments);
+app.use('/ajax/upload', uploads);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
