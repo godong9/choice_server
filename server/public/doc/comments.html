@@ -42,7 +42,40 @@ RESPONSE
 <pre><code>REQUEST
  - POST /ajax/comment/save
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;choiceId&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;content&quot;:&quot;댓글 테스트&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;updateTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;_id&quot;:&quot;55782cc6f89a41e104e96cdc&quot;,&quot;unlikers&quot;:[],&quot;likers&quot;:[],&quot;unlikeCount&quot;:0,&quot;likeCount&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, commentCtrl.saveComment);
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;choiceId&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;content&quot;:&quot;댓글 테스트&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;updateTime&quot;:&quot;2015-06-10T12:25:42.278Z&quot;,&quot;_id&quot;:&quot;55782cc6f89a41e104e96cdc&quot;,&quot;unlikers&quot;:[],&quot;likers&quot;:[],&quot;unlikeCount&quot;:0,&quot;likeCount&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, commentCtrl.saveComment);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-put-comment-"><strong>PUT comment</strong></h2>
+<ul>
+<li>댓글 공감 API</li>
+</ul>
+<h3 id="url-ajaxcommentlikeidid">URL: /ajax/comment/like/id/:id</h3>
+<h3 id="type-put">TYPE: PUT</h3>
+<p>Example:</p>
+<pre><code>REQUEST
+ - PUT /ajax/comment/like/id/55782cc6f89a41e104e96cdc
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;ok&quot;:1,&quot;nModified&quot;:1,&quot;n&quot;:1}}</code></pre></div></div><div class="code"><div class="wrapper">router.put(<span class="hljs-string">'/like/id/:id'</span>, commentCtrl.likeComment);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-put-comment-"><strong>PUT comment</strong></h2>
+<ul>
+<li>댓글 비공감 API</li>
+</ul>
+<h3 id="url-ajaxcommentunlikeidid">URL: /ajax/comment/unlike/id/:id</h3>
+<h3 id="type-put">TYPE: PUT</h3>
+<p>Example:</p>
+<pre><code>REQUEST
+ - PUT /ajax/comment/unlike/id/55782cc6f89a41e104e96cdc
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;ok&quot;:1,&quot;nModified&quot;:1,&quot;n&quot;:1}}</code></pre></div></div><div class="code"><div class="wrapper">router.put(<span class="hljs-string">'/unlike/id/:id'</span>, commentCtrl.unlikeComment);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-delete-comment-"><strong>DELETE comment</strong></h2>
+<ul>
+<li>댓글 삭제 API</li>
+</ul>
+<h3 id="url-ajaxcommentdeleteidid">URL: /ajax/comment/delete/id/:id</h3>
+<h3 id="type-delete">TYPE: DELETE</h3>
+<p>Example:</p>
+<pre><code>REQUEST
+ - DELETE /ajax/comment/delete/id/55782cc6f89a41e104e96cdc
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;ok&quot;:1,&quot;n&quot;:1}}</code></pre></div></div><div class="code"><div class="wrapper">router.delete(<span class="hljs-string">'/delete/id/:id'</span>, commentCtrl.deleteComment);
 
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

@@ -75,14 +75,32 @@ RESPONSE
 </li>
 </ul>
 </li>
-<li><p><strong>writer must be a String.</strong><br/>(- 작성자 ID)</p>
-</li>
 </ul>
 <p>Example:</p>
 <pre><code>REQUEST
  - POST /ajax/choice/save
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;title&quot;:&quot;야식 뭐먹?&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;updateTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;_id&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;popularity&quot;:0,&quot;voters&quot;:[],&quot;finalResult&quot;:&quot;&quot;,&quot;item3&quot;:{&quot;voters&quot;:[]},&quot;item2&quot;:{&quot;name&quot;:&quot;피자&quot;,&quot;voters&quot;:[]},&quot;item1&quot;:{&quot;name&quot;:&quot;치킨&quot;,&quot;voters&quot;:[]},&quot;tags&quot;:[&quot;야식&quot;,&quot;치킨&quot;,&quot;피자&quot;],&quot;description&quot;:&quot;야식 뭐먹을까?&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, choiceCtrl.saveChoice);
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;title&quot;:&quot;야식 뭐먹?&quot;,&quot;writer&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;createTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;updateTime&quot;:&quot;2015-05-31T03:01:21.269Z&quot;,&quot;_id&quot;:&quot;556a7981a24305fc0abec558&quot;,&quot;popularity&quot;:0,&quot;voters&quot;:[],&quot;finalResult&quot;:&quot;&quot;,&quot;item3&quot;:{&quot;voters&quot;:[]},&quot;item2&quot;:{&quot;name&quot;:&quot;피자&quot;,&quot;voters&quot;:[]},&quot;item1&quot;:{&quot;name&quot;:&quot;치킨&quot;,&quot;voters&quot;:[]},&quot;tags&quot;:[&quot;야식&quot;,&quot;치킨&quot;,&quot;피자&quot;],&quot;description&quot;:&quot;야식 뭐먹을까?&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, choiceCtrl.saveChoice);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+<h2 id="-put-choice-"><strong>PUT choice</strong></h2>
+<ul>
+<li>선택 항목 수정하는 API</li>
+</ul>
+<h3 id="url-ajaxchoiceupdateidid">URL: /ajax/choice/update/id/:id</h3>
+<h3 id="type-put">TYPE: PUT</h3>
+<p>Parameters:</p>
+<ul>
+<li><p><strong>title is optional and must be a String.</strong><br/>(- 제목)</p>
+</li>
+<li><p><strong>description is optional and must be a String.</strong><br/>(- 자세한 내용)</p>
+</li>
+<li><p><strong>tags is optional and must be an Array.</strong><br/>(- 태그 목록)</p>
+</li>
+</ul>
+<p>Example:</p>
+<pre><code>REQUEST
+ - PUT /ajax/choice/update/id/556a7981a24305fc0abec558
+RESPONSE
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;ok&quot;:1,&quot;nModified&quot;:1,&quot;n&quot;:1}}</code></pre></div></div><div class="code"><div class="wrapper">router.put(<span class="hljs-string">'/update/id/:id'</span>, choiceCtrl.updateChoice);
 
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>

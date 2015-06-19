@@ -92,6 +92,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "slug": "type-post"
           },
           "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/choice/update/id/:id",
+            "slug": "url-ajaxchoiceupdateidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: PUT",
+            "slug": "type-put"
+          },
+          "depth": 3
         }
       ]
     }, {
@@ -144,6 +160,54 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 3,
             "title": "TYPE: POST",
             "slug": "type-post"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/comment/like/id/:id",
+            "slug": "url-ajaxcommentlikeidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: PUT",
+            "slug": "type-put"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/comment/unlike/id/:id",
+            "slug": "url-ajaxcommentunlikeidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: PUT",
+            "slug": "type-put"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/comment/delete/id/:id",
+            "slug": "url-ajaxcommentdeleteidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: DELETE",
+            "slug": "type-delete"
           },
           "depth": 3
         }
