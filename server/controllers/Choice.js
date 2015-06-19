@@ -58,7 +58,6 @@ ChoiceCtrl.saveChoice = function (req, res) {
     var errors, choice;
     req.checkBody('item1.name', 'Invalid value').notEmpty();
     req.checkBody('item2.name', 'Invalid value').notEmpty();
-    req.checkBody('writer', 'Invalid value').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     choice = {

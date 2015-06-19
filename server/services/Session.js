@@ -18,7 +18,9 @@ SessionService.getSession = function (req) {
 };
 
 SessionService.getSessionUserId = function (req) {
-    return req.session._id;
+    //TODO: 테스트 위한 코드
+    return "556952b2e004fb830256666d";
+    //return req.session._id;
 };
 
 
