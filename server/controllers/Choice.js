@@ -12,7 +12,7 @@ function ChoiceCtrl() {
 }
 
 ChoiceCtrl.getChoice = function (req, res) {
-    var errors, criteria, me;
+    var errors, criteria, userId;
     req.checkParams('id', 'Invalid value').notEmpty().isAlphanumeric();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
@@ -23,9 +23,9 @@ ChoiceCtrl.getChoice = function (req, res) {
             doc.isWriter = false;
             doc.isAlreadyVote = false;
         } else {
-            me = SessionService.getSession(req);
-            doc.isWriter = (doc.writer === me._id);
-            doc.isAlreadyVote = (doc.voters.indexOf(me._id) > -1);
+            userId = SessionService.getSessionUserId(req);
+            doc.isWriter = (doc.writer === userId);
+            doc.isAlreadyVote = (doc.voters.indexOf(userId) > -1);
         }
 
         res.status(200).send(RService.SUCCESS(doc));

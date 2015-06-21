@@ -3,7 +3,10 @@ function SessionService() {
 }
 
 SessionService.hasSession = function (req) {
-    return (typeof req.session !== "undefined" && typeof req.session._id !== "undefined");
+    //TODO: 테스트 위한 코드. 삭제해야함.
+    return true;
+
+    //return (typeof req.session !== "undefined" && typeof req.session._id !== "undefined");
 };
 
 SessionService.getSession = function (req) {
@@ -18,8 +21,9 @@ SessionService.getSession = function (req) {
 };
 
 SessionService.getSessionUserId = function (req) {
-    //TODO: 테스트 위한 코드
+    //TODO: 테스트 위한 코드. 삭제해야함.
     return "556952b2e004fb830256666d";
+
     //return req.session._id;
 };
 
