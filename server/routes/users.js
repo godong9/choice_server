@@ -14,7 +14,7 @@ var userCtrl = require('../controllers/User');
  *  REQUEST
  *   - GET /ajax/user/all
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"5562ce4b2b3c19cf0b91905c","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:24:59.174Z","profileUrl":"","__v":0},{"_id":"5562ceb322430cde0b1bc280","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:26:43.118Z","profileUrl":"","__v":0},{"_id":"5562cf583ac8c7e90bc76550","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:29:28.739Z","profileUrl":"","__v":0},{"_id":"5562cf76fdd5cbed0b7f9022","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:29:58.038Z","profileUrl":"","__v":0},{"_id":"5562d01fe0b90f040c1b13b2","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:32:47.127Z","profileUrl":"","__v":0},{"_id":"5562d05f6bef4f0e0c0c474e","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:33:51.647Z","profileUrl":"","__v":0}]}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":[{"_id":"5562ce4b2b3c19cf0b91905c","userId":"abc","name":"aa","createTime":"2015-05-25T07:24:59.174Z","profileUrl":"","__v":0},{"_id":"5562ceb322430cde0b1bc280","userId":"abc","name":"aa","createTime":"2015-05-25T07:26:43.118Z","profileUrl":"","__v":0},{"_id":"5562cf583ac8c7e90bc76550","userId":"abc","name":"aa","createTime":"2015-05-25T07:29:28.739Z","profileUrl":"","__v":0},{"_id":"5562cf76fdd5cbed0b7f9022","userId":"abc","name":"aa","createTime":"2015-05-25T07:29:58.038Z","profileUrl":"","__v":0},{"_id":"5562d01fe0b90f040c1b13b2","userId":"abc","name":"aa","createTime":"2015-05-25T07:32:47.127Z","profileUrl":"","__v":0},{"_id":"5562d05f6bef4f0e0c0c474e","userId":"abc","name":"aa","createTime":"2015-05-25T07:33:51.647Z","profileUrl":"","__v":0}]}
  *
  */
 router.get('/all', userCtrl.getAllUsers);
@@ -31,7 +31,7 @@ router.get('/all', userCtrl.getAllUsers);
  *  REQUEST
  *   - GET /ajax/user/id/5562ce4b2b3c19cf0b91905c
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"5562ce4b2b3c19cf0b91905c","deviceId":"abc","name":"aa","createTime":"2015-05-25T07:24:59.174Z","profileUrl":"","__v":0}}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"5562ce4b2b3c19cf0b91905c","userId":"abc","name":"aa","createTime":"2015-05-25T07:24:59.174Z","profileUrl":"","__v":0}}
  *
  */
 router.get('/id/:id', userCtrl.getUser);
@@ -44,14 +44,15 @@ router.get('/id/:id', userCtrl.getUser);
  * ### URL: /ajax/user/save
  * ### TYPE: POST
  *
- * @param {String} deviceId - 디바이스 ID
+ * @param {String} userId - 유저 ID
  * @param {String} name - 닉네임
+ * @param {String} [profileUrl] - 프로필 Url
  *
  * @example
  *  REQUEST
  *   - POST /ajax/user/save
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"__v":0,"deviceId":"a1b2c3","name":"test","createTime":"2015-05-30T06:03:30.541Z","_id":"556952b2e004fb830256666d"}}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"__v":0,"userId":"a1b2c3","name":"test","createTime":"2015-05-30T06:03:30.541Z","_id":"556952b2e004fb830256666d"}}
  *
  */
 router.post('/save', userCtrl.saveUser);
@@ -85,13 +86,13 @@ router.put('/update/id/:id', userCtrl.updateUser);
  * ### URL: /ajax/user/login
  * ### TYPE: POST
  *
- * @param {String} deviceId - 디바이스 ID
+ * @param {String} userId - 유저 ID
  *
  * @example
  *  REQUEST
  *   - POST /ajax/user/login
  *  RESPONSE
- *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"556952b2e004fb830256666d","deviceId":"a1b2c3","name":"test","createTime":"2015-05-30T06:03:30.541Z","__v":0}}
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"_id":"556952b2e004fb830256666d","userId":"a1b2c3","name":"test","createTime":"2015-05-30T06:03:30.541Z","__v":0}}
  */
 router.post('/login', userCtrl.login);
 

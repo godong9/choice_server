@@ -32,12 +32,12 @@ UserCtrl.getUser = function (req, res) {
 
 UserCtrl.saveUser = function (req, res) {
     var errors, user;
-    req.checkBody('deviceId', 'Invalid value').notEmpty().isAlphanumeric();
+    req.checkBody('userId', 'Invalid value').notEmpty();
     req.checkBody('name', 'Invalid value').notEmpty();
     errors = req.validationErrors();
     if (errors) return res.status(400).send(RService.ERROR(errors));
     user = {
-        deviceId: req.body.deviceId,
+        userId: req.body.userId,
         name: req.body.name,
         profileUrl: req.body.profileUrl,
         gender: req.body.gender
