@@ -23,7 +23,8 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
         "pageTitle": "index",
         "title": "index"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": []
     }, {
       "type": "file",
       "data": {
@@ -90,6 +91,22 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
             "level": 3,
             "title": "TYPE: POST",
             "slug": "type-post"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/choice/vote/id/:id",
+            "slug": "url-ajaxchoicevoteidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: PUT",
+            "slug": "type-put"
           },
           "depth": 3
         }, {
@@ -224,13 +241,116 @@ f.event={add:function(a,c,d,e,g){var h,i,j,k,l,m,n,o,p,q,r,s;if(!(a.nodeType===3
           "foldPrefix": "^",
           "name": "JavaScript"
         },
+        "sourcePath": "/Users/godong/Desktop/Project/choice_server/server/routes/uploads.js",
+        "projectPath": "/Users/godong/Desktop/Project/choice_server/server/routes/uploads.js",
+        "targetPath": "uploads",
+        "pageTitle": "uploads",
+        "title": "uploads"
+      },
+      "depth": 1,
+      "outline": []
+    }, {
+      "type": "file",
+      "data": {
+        "language": {
+          "nameMatchers": [".js"],
+          "pygmentsLexer": "javascript",
+          "multiLineComment": ["/*", "*", "*/"],
+          "singleLineComment": ["//"],
+          "ignorePrefix": "}",
+          "foldPrefix": "^",
+          "name": "JavaScript"
+        },
         "sourcePath": "/Users/godong/Desktop/Project/choice_server/server/routes/users.js",
         "projectPath": "/Users/godong/Desktop/Project/choice_server/server/routes/users.js",
         "targetPath": "users",
         "pageTitle": "users",
         "title": "users"
       },
-      "depth": 1
+      "depth": 1,
+      "outline": [
+        {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/all",
+            "slug": "url-ajaxuserall"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/id/:id",
+            "slug": "url-ajaxuseridid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: GET",
+            "slug": "type-get"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/save",
+            "slug": "url-ajaxusersave"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/update/id/:id",
+            "slug": "url-ajaxuserupdateidid"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: PUT",
+            "slug": "type-put"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "URL: /ajax/user/login",
+            "slug": "url-ajaxuserlogin"
+          },
+          "depth": 3
+        }, {
+          "type": "heading",
+          "data": {
+            "level": 3,
+            "title": "TYPE: POST",
+            "slug": "type-post"
+          },
+          "depth": 3
+        }
+      ]
     }
   ];
 

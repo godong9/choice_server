@@ -11,7 +11,7 @@
 <pre><code>REQUEST
  - GET /ajax/user/all
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;5562ce4b2b3c19cf0b91905c&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:24:59.174Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562ceb322430cde0b1bc280&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:26:43.118Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562cf583ac8c7e90bc76550&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:29:28.739Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562cf76fdd5cbed0b7f9022&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:29:58.038Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562d01fe0b90f040c1b13b2&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:32:47.127Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562d05f6bef4f0e0c0c474e&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:33:51.647Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, userCtrl.getAllUsers);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:[{&quot;_id&quot;:&quot;5562ce4b2b3c19cf0b91905c&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:24:59.174Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562ceb322430cde0b1bc280&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:26:43.118Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562cf583ac8c7e90bc76550&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:29:28.739Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562cf76fdd5cbed0b7f9022&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:29:58.038Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562d01fe0b90f040c1b13b2&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:32:47.127Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0},{&quot;_id&quot;:&quot;5562d05f6bef4f0e0c0c474e&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:33:51.647Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0}]}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/all'</span>, userCtrl.getAllUsers);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-get-user-by-id-"><strong>GET User by id</strong></h2>
 <ul>
 <li>id로 유저 정보 가져오는 API</li>
@@ -22,7 +22,7 @@ RESPONSE
 <pre><code>REQUEST
  - GET /ajax/user/id/5562ce4b2b3c19cf0b91905c
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;5562ce4b2b3c19cf0b91905c&quot;,&quot;deviceId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:24:59.174Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, userCtrl.getUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;5562ce4b2b3c19cf0b91905c&quot;,&quot;userId&quot;:&quot;abc&quot;,&quot;name&quot;:&quot;aa&quot;,&quot;createTime&quot;:&quot;2015-05-25T07:24:59.174Z&quot;,&quot;profileUrl&quot;:&quot;&quot;,&quot;__v&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.get(<span class="hljs-string">'/id/:id'</span>, userCtrl.getUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-post-save-user-"><strong>POST Save user</strong></h2>
 <ul>
 <li>유저 추가하는 API</li>
@@ -31,16 +31,18 @@ RESPONSE
 <h3 id="type-post">TYPE: POST</h3>
 <p>Parameters:</p>
 <ul>
-<li><p><strong>deviceId must be a String.</strong><br/>(- 디바이스 ID)</p>
+<li><p><strong>userId must be a String.</strong><br/>(- 유저 ID)</p>
 </li>
 <li><p><strong>name must be a String.</strong><br/>(- 닉네임)</p>
+</li>
+<li><p><strong>profileUrl is optional and must be a String.</strong><br/>(- 프로필 Url)</p>
 </li>
 </ul>
 <p>Example:</p>
 <pre><code>REQUEST
  - POST /ajax/user/save
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;deviceId&quot;:&quot;a1b2c3&quot;,&quot;name&quot;:&quot;test&quot;,&quot;createTime&quot;:&quot;2015-05-30T06:03:30.541Z&quot;,&quot;_id&quot;:&quot;556952b2e004fb830256666d&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, userCtrl.saveUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;__v&quot;:0,&quot;userId&quot;:&quot;a1b2c3&quot;,&quot;name&quot;:&quot;test&quot;,&quot;createTime&quot;:&quot;2015-05-30T06:03:30.541Z&quot;,&quot;_id&quot;:&quot;556952b2e004fb830256666d&quot;}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/save'</span>, userCtrl.saveUser);</div></div></div><div class="segment"><div class="comments doc-section"><div class="wrapper"><hr>
 <h2 id="-put-update-user-"><strong>PUT Update user</strong></h2>
 <ul>
 <li>유저 정보 업데이트 하는 API</li>
@@ -67,13 +69,13 @@ RESPONSE
 <h3 id="type-post">TYPE: POST</h3>
 <p>Parameters:</p>
 <ul>
-<li><strong>deviceId must be a String.</strong><br/>(- 디바이스 ID)</li>
+<li><strong>userId must be a String.</strong><br/>(- 유저 ID)</li>
 </ul>
 <p>Example:</p>
 <pre><code>REQUEST
  - POST /ajax/user/login
 RESPONSE
- - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;deviceId&quot;:&quot;a1b2c3&quot;,&quot;name&quot;:&quot;test&quot;,&quot;createTime&quot;:&quot;2015-05-30T06:03:30.541Z&quot;,&quot;__v&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/login'</span>, userCtrl.login);
+ - {&quot;resultCode&quot;:0,&quot;resultMsg&quot;:&quot;SUCCESS&quot;,&quot;data&quot;:{&quot;_id&quot;:&quot;556952b2e004fb830256666d&quot;,&quot;userId&quot;:&quot;a1b2c3&quot;,&quot;name&quot;:&quot;test&quot;,&quot;createTime&quot;:&quot;2015-05-30T06:03:30.541Z&quot;,&quot;__v&quot;:0}}</code></pre></div></div><div class="code"><div class="wrapper">router.post(<span class="hljs-string">'/login'</span>, userCtrl.login);
 
 
 <span class="hljs-built_in">module</span>.exports = router;</div></div></div></div></body></html>
