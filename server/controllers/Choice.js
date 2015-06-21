@@ -77,6 +77,24 @@ ChoiceCtrl.saveChoice = function (req, res) {
     });
 };
 
+ChoiceCtrl.voteChoice = function (req, res) {
+    var errors, criteria, voteData;
+    req.checkParams('id', 'Invalid value').notEmpty();
+    req.checkBody('voteItem', 'Invalid value').notEmpty();
+    errors = req.validationErrors();
+    if (errors) return res.status(400).send(RService.ERROR(errors));
+    criteria = { _id: req.params.id };
+    voteData = {
+      item: req.body.voteItem,
+      userId: SessionService.getSessionUserId()
+    };
+
+    Choice.voteChoice(criteria, voteData, function(err, result) {
+        if (err) return res.status(400).send(RService.ERROR(err));
+        res.status(200).send(RService.SUCCESS(result));
+    });
+};
+
 ChoiceCtrl.updateChoice = function (req, res) {
     var errors, criteria, userId, choice;
     req.checkParams('id', 'Invalid value').notEmpty();

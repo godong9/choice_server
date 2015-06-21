@@ -70,6 +70,24 @@ ChoiceSchema.statics.saveChoice = function (doc, callback) {
     this.create(doc, callback);
 };
 
+ChoiceSchema.statics.voteChoice = function (criteria, voteData, callback) {
+    var self = this;
+    if (!voteData) return callback("voteData is empty!");
+
+    this.findOne(criteria, function(err, doc) {
+        var updateDoc = {};
+        if (err || !doc) return callback(err || "Doc is empty!");
+        if (doc.voters.indexOf(voteData.userId) > -1) return callback("Already vote!");
+        doc.voters.push(voteData.userId);
+        doc[voteData.item].voters.push(voteData.userId);
+
+        updateDoc[voteData.item] = doc[voteData.item];
+        updateDoc.voters = doc.voters;
+
+        self.update(criteria, updateDoc, callback);
+    });
+};
+
 ChoiceSchema.statics.updateChoice = function (criteria, userId, doc, callback) {
     var self = this;
     if (!doc) return callback("Doc is empty!");

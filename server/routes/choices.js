@@ -78,6 +78,25 @@ router.post('/save', choiceCtrl.saveChoice);
 /**
  * ---------
  * ## **PUT choice**
+ *  - 투표하는 API
+ *
+ * ### URL: /ajax/choice/vote/id/:id
+ * ### TYPE: PUT
+ *
+ * @param {String} voteItem - 투표한 아이템 (item1 or item2 or item3)
+ *
+ * @example
+ *  REQUEST
+ *   - POST /ajax/choice/save
+ *  RESPONSE
+ *   - {"resultCode":0,"resultMsg":"SUCCESS","data":{"ok":1,"nModified":1,"n":1}}
+ *
+ */
+router.put('/vote/id/:id', choiceCtrl.voteChoice);
+
+/**
+ * ---------
+ * ## **PUT choice**
  *  - 선택 항목 수정하는 API
  *
  * ### URL: /ajax/choice/update/id/:id
