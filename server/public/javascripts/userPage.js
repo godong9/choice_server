@@ -3,7 +3,7 @@
     'use strict';
 
     function getUserData() {
-        var userId = "5562ce4b2b3c19cf0b91905c";
+        var userId = "558d60dc21c2b71531cc986a";
         $.ajax({
             url: '/ajax/user/id/'+userId,
             type: 'GET',
@@ -14,7 +14,7 @@
                 if (result && result.resultCode === 0) {
                     var user = result.data;
                     $('#user_name').text(user.name);
-                    $('#user_profile img').attr('src', user.profileUrl);
+                    $('#user_profile img').attr('src', '/'+user.profileUrl);
                 } else {
                     alert("Error");
                 }

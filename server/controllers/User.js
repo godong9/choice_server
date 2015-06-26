@@ -11,7 +11,7 @@ function UserCtrl() {
 }
 
 UserCtrl.getUserPage = function (req, res) {
-
+    res.render('userPage.ejs');
 };
 
 UserCtrl.getAllUsers = function (req, res) {

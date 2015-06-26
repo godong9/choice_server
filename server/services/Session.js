@@ -10,19 +10,27 @@ SessionService.hasSession = function (req) {
 };
 
 SessionService.getSession = function (req) {
+    //TODO: 테스트 위한 코드. 삭제해야함.
     var data = {
-        _id: req.session._id,
-        deviceId: req.session.deviceId,
-        name: req.session.name,
-        profileUrl: req.session.profileUrl
+        _id: "558d60dc21c2b71531cc986a",
+        userId: "orak",
+        name: "오락이",
+        profileUrl: "images/testUser.jpg"
     };
+
+    //var data = {
+    //    _id: req.session._id,
+    //    deviceId: req.session.deviceId,
+    //    name: req.session.name,
+    //    profileUrl: req.session.profileUrl
+    //};
 
     return data;
 };
 
 SessionService.getSessionUserId = function (req) {
     //TODO: 테스트 위한 코드. 삭제해야함.
-    return "556952b2e004fb830256666d";
+    return "558d60dc21c2b71531cc986a";
 
     //return req.session._id;
 };
