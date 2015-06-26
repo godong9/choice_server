@@ -10,6 +10,10 @@ function UserCtrl() {
 
 }
 
+UserCtrl.getUserPage = function (req, res) {
+
+};
+
 UserCtrl.getAllUsers = function (req, res) {
     User.getUsers({}, function(err, docs) {
         if (err) return res.status(400).send(RService.ERROR(err));
