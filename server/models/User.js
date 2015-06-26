@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
  * User Schema
  */
 var UserSchema = new Schema({
-    deviceId: { type: String, required: true }, // 디바이스 고유 ID
+    userId: { type: String, required: true }, // 유저 고유 ID
     name: { type: String, required: true }, // 닉네임
     profileUrl: { type: String, default: '' }, // 프로필 이미지 주소
     gender: { type: Number },	// 1:male, 2:female
