@@ -29,6 +29,7 @@ var choices = require('./routes/choices');
 var comments = require('./routes/comments');
 var uploads = require('./routes/uploads');
 var userPage = require('./routes/page/userPage');
+var gamePage = require('./routes/page/gamePage');
 
 // Database Setup
 var dbUri = 'mongodb://localhost:27017/choicedb';
@@ -89,6 +90,7 @@ app.use('/ajax/choice', choices);
 app.use('/ajax/comment', comments);
 app.use('/ajax/upload', uploads);
 app.use('/user', userPage);
+app.use('/game', gamePage);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
